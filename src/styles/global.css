@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'aeonick';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/aeonik-regular.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'inter';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/inter-light.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/inter-medium.woff2') format('woff2');
+  }
+
+  /* For creating font fallback use our CLI tool https://github.com/pixel-point/fontpie
+
+    @font-face {
+      font-family: 'Sans Fallback';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Arial');
+      ascent-override: 135.54%;
+      descent-override: 39.21%;
+      line-gap-override: 0%;
+      size-adjust: 77.7%;
+    } */
+
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  .container {
+    /* FIXME: Specify the real "px-" padding */
+    /* FIXME: Specify the max-width "max-w-" by formula: 1920px design content width + padding * 2 */
+    @apply mx-auto w-full max-w-[1500px] px-4;
+
+    /*
+      FIXME: Specify the real "px-" padding for each breakpoint
+      @screen 2xl {
+        @apply px-;
+      }
+    */
+  }
+
+  .gap-x-grid {
+    /* FIXME: Specify the real grid "gap-x-" for each breakpoint */
+    @apply gap-x-10;
+  }
+}
+
+@layer utilities {
+  /*
+    Handy CSS class to prevent Input background color becomes yellow in Chrome on autofill.
+    Works as well with inputs with transparent background.
+
+    https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
+  */
+  .remove-autocomplete-styles:-webkit-autofill,
+  .remove-autocomplete-styles:-webkit-autofill:hover,
+  .remove-autocomplete-styles:-webkit-autofill:focus {
+    transition: background-color 5000s;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* fix shift of bold text on hover */
+  .fix-shift::before {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  .primary-btn {
+    @apply text-white px-9 rounded-full font-semibold text-base leading-4 bg-primary-blue hover:bg-secondary-blue transition-colors;
+  }
+
+  .secondary-btn {
+    @apply text-white px-9 rounded-full border font-semibold text-base leading-4 border-primary-blue bg-opacity-20 bg-primary-blue hover:bg-opacity-50 hover:border-secondary-blue transition-colors;
+  }
+
+  .basic-input {
+    background: linear-gradient(
+      269.21deg,
+      rgba(24, 38, 74, 0.8) 22.75%,
+      rgba(15, 22, 49, 0.8) 93.35%
+    );
+    width: calc(100% - 2px);
+  }
+
+  .basic-input-border {
+    background: linear-gradient(90deg, #1b244f 0%, #2c427e 100%);
+  }
+
+  .gradient-h1 {
+    background: linear-gradient(102.21deg, rgba(109, 156, 246, 0.7) -11.46%, #ffffff 46.19%);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* .gradient-input {
+    background: linear-gradient(90deg, #C8D6F2 0%, #ADC2EC 32.41%, #9EB7E8 71.97%, #97B1E6 100%);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  } */
+
+  .gradient-h2 {
+    background: linear-gradient(
+      90deg,
+      rgba(109, 156, 246, 0.7) -8.51%,
+      rgba(195, 214, 251, 0.876516) 10.33%,
+      #ffffff 51.91%,
+      rgba(208, 223, 252, 0.90333) 87.66%,
+      rgba(109, 156, 246, 0.7) 109.79%
+    );
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-card {
+    background: linear-gradient(180deg, rgba(33, 66, 136, 0.35) 0%, rgba(8, 20, 43, 0.35) 100%);
+  }
+
+  .solutions-border {
+    background: linear-gradient(180deg, #304373 0%, #0f1d41 100%);
+  }
+
+  .solutions-card {
+    height: calc(100% - 2px);
+    width: calc(100% - 2px);
+    margin: 1px;
+    background: linear-gradient(180deg, #111a39 0%, #0c1024 100%);
+  }
+
+  /* animations */
+
+  @keyframes user-action {
+    0% {
+      transform: translate(0, 0);
+    }
+    18% {
+      transform: translate(60px, 0);
+    }
+    43% {
+      transform: translate(10px, 23px);
+    }
+    61% {
+      transform: translate(130px, 23px);
+    }
+    85% {
+      transform: translate(40px, 45px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes user-action2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(100px, 0);
+    }
+    50% {
+      transform: translate(-20px, 45px);
+    }
+    75% {
+      transform: translate(80px, 45px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  .animation-user-action {
+    animation: user-action 15s infinite;
+  }
+
+  .animation-user-action2 {
+    animation: user-action2 9s infinite;
+  }
+}
